@@ -84,6 +84,8 @@ class StudentController extends Controller
      */
     public function edit(Student $student)
     {
+        $data['guardians'] = Guardian::all();
+
         $data['student']=Student::find($student->id);
         return view('backend.modules.student.edit',$data);
     }
@@ -97,7 +99,33 @@ class StudentController extends Controller
      */
     public function update(Request $request, Student $student)
     {
-        //
+        $data['first_name'] = $request->first_name;
+        $data['last_name'] = $request->last_name;
+        $data['date_of_birth'] = $request->date_of_birth;
+        $data['phone'] = $request->phone;
+        $data['email'] = $request->email;
+        $data['gender'] = $request->gender;
+        $data['address'] = $request->address;
+        $data['street_name'] = $request->street_name;
+        $data['police_station'] = $request->police_station;
+        $data['district'] = $request->district;
+        $data['admission_date'] = $request->admission_date;
+
+        if ($request->hasFile('image')){
+            $file = $request->file('image');
+            $path = 'public/images';
+            $file_name =rand(000,999).'.'. $file->getClientOriginalExtension();
+            $file->move($path,$file_name);
+            $data['photo'] = $path.'/'.$file_name;
+            if(file_exists($student->photo)){
+                unlink($student->photo);
+            }
+        }
+        $data['guardian_id'] = $request->guardian_id;
+
+        // dd($data);
+        $student->update($data);
+        return redirect()->route('student.index');
     }
 
     /**

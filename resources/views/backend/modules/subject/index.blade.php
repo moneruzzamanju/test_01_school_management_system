@@ -37,11 +37,11 @@
               <td>{{ $subject->description }}</td>
               <td class="d-flex justify">
                   <a href="{{ route('subject.show',$subject->id) }}" 
-                  class="btn btn-info update_product_form">
+                  class="btn btn-info ">
                   <i class="las la-info"></i>
                 </a>
                   <a href="{{ route('subject.edit',$subject->id) }}" 
-                  class="btn btn-success update_product_form">
+                  class="btn btn-success ">
                   <i class="las la-edit"></i>
                 </a>
                   

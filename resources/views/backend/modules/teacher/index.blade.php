@@ -52,11 +52,11 @@
 
               <td class="d-flex justify">
                 <a href="{{ route('teacher.show',$teacher->id) }}" 
-                class="btn btn-info update_product_form">
+                class="btn btn-info ">
                 <i class="las la-info"></i>
               </a>
                 <a href="{{ route('teacher.edit',$teacher->id) }}" 
-                class="btn btn-success update_product_form">
+                class="btn btn-success ">
                 <i class="las la-edit"></i>
               </a>
                 

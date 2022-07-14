@@ -17,7 +17,7 @@
         <h1>{{ $student->police_station }}</h1>
         <h1>{{ $student->district }}</h1>
         <h1>{{ $student->admission_date }}</h1>
-        <h1>{{ $student->photo }}</h1>
+        <p><img id="previewImage" src="{{ asset($student->photo) }}" alt="Photo" style="max-width: 300px; max-height: 300px;margin-top: 10px"></td></p>
         <h1>{{ $student->guardian_id }}</h1>
 
         <a href="{{ route('student.index') }}" class="btn btn-outline-success">All Students</a>

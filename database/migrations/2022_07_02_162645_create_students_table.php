@@ -27,7 +27,7 @@ return new class extends Migration
             $table->string('district')->nullable();
             $table->string('admission_date')->nullable();
             $table->string('photo')->nullable();
-            $table->foreignId('guardian_id')->constrained();
+            $table->foreignId('guardian_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
 //            $table->integer('guardian_id')->unsigned();
 //            $table->foreign('guardian_id')->references('id')->on('guardians');
 

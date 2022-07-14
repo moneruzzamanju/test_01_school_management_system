@@ -13,8 +13,7 @@
         <h1>{{ $teacher->email }}</h1>
         <h1>{{ $teacher->gender }}</h1>
         <h1>{{ $teacher->address }}</h1>
-        <p><img id="previewImage" src="{{ asset($teacher->photo) }}" alt="Teacher Photo" style="max-width: 300px; max-height: 300px;margin-top: 10px"></td>
-        </p>
+        <p><img id="previewImage" src="{{ asset($teacher->photo) }}" alt="Teacher Photo" style="max-width: 300px; max-height: 300px;margin-top: 10px"></td></p>
     
 
         <a href="{{ route('teacher.index') }}" class="btn btn-outline-success">All Teachers</a>
