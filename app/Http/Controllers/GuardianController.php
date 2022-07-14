@@ -79,7 +79,8 @@ class GuardianController extends Controller
      */
     public function edit(Guardian $guardian)
     {
-        //
+        $data['guardian']=Guardian::find($guardian->id);
+        return view('backend.modules.guardian.edit',$data);
     }
 
     /**
@@ -91,7 +92,31 @@ class GuardianController extends Controller
      */
     public function update(Request $request, Guardian $guardian)
     {
-        //
+        $data['father_name'] = $request->father_name;
+        $data['father_phone_no'] = $request->father_phone_no;
+        $data['father_occupation'] = $request->father_occupation;
+   
+        if ($request->hasFile('image')){
+            $file = $request->file('image');
+            $path = 'public/images';
+            $file_name =rand(000,999).'.'. $file->getClientOriginalExtension();
+            $file->move($path,$file_name);
+            $data['father_photo'] = $path.'/'.$file_name;
+
+            if(file_exists($guardian->father_photo)){
+                unlink($guardian->father_photo);
+            };
+        }
+
+        $data['mother_name'] = $request->mother_name;
+        $data['mother_phone_no'] = $request->mother_phone_no;
+        $data['mother_occupation'] = $request->mother_occupation;
+        $data['office_phone'] = $request->office_phone;
+        $data['email'] = $request->email;
+
+        // dd($data);
+        $guardian->update($data);
+        return redirect()->route('guardian.index');
     }
 
     /**

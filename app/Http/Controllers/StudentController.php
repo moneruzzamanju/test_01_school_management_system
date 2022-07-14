@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Guardian;
 use App\Models\Student;
 use Illuminate\Http\Request;
 
@@ -25,7 +26,8 @@ class StudentController extends Controller
      */
     public function create()
     {
-        return view('backend.modules.student.create');
+        $data['guardians'] = Guardian::all();
+        return view('backend.modules.student.create',$data);
     }
 
     /**
@@ -36,7 +38,30 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data['first_name'] = $request->first_name;
+        $data['last_name'] = $request->last_name;
+        $data['date_of_birth'] = $request->date_of_birth;
+        $data['phone'] = $request->phone;
+        $data['email'] = $request->email;
+        $data['gender'] = $request->gender;
+        $data['address'] = $request->address;
+        $data['street_name'] = $request->street_name;
+        $data['police_station'] = $request->police_station;
+        $data['district'] = $request->district;
+        $data['admission_date'] = $request->admission_date;
+
+        if ($request->hasFile('image')){
+            $file = $request->file('image');
+            $path = 'public/images';
+            $file_name =rand(000,999).'.'. $file->getClientOriginalExtension();
+            $file->move($path,$file_name);
+            $data['photo'] = $path.'/'.$file_name;
+        }
+        $data['guardian_id'] = $request->guardian_id;
+
+        // dd($data);
+        Student::create($data);
+        return redirect()->route('student.index');
     }
 
     /**
@@ -59,7 +84,8 @@ class StudentController extends Controller
      */
     public function edit(Student $student)
     {
-        //
+        $data['student']=Student::find($student->id);
+        return view('backend.modules.student.edit',$data);
     }
 
     /**

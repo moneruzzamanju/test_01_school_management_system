@@ -23,4 +23,10 @@ class Student extends Model
         'photo',
         'guardian_id',
     ];
+
+
+    public function guardian()
+    {
+       return $this->belongsTo(Guardian::class);
+    }
 }

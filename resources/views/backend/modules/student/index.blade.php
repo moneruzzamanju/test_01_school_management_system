@@ -57,7 +57,7 @@
               <td>{{ $student->district }}</td>
               <td>{{ $student->admission_date }}</td>
               <td><img src="{{$student->photo }}" style="max-width: 75px;max-height: 75px;margin-top: 10px" alt="Photo"></td>
-              <td>{{ $student->guardian_id }}</td>
+              <td>{{ $student->guardian->father_name }}</td>
               <td>{{ $student->status }}</td>
 
               <td class="d-flex justify">

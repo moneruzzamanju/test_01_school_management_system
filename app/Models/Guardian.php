@@ -24,4 +24,8 @@ class Guardian extends Model
         'email',
         'status',
     ];
+    public function students()
+    {
+       return $this->hasMany(Student::class);
+    }
 }
