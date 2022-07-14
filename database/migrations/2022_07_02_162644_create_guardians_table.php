@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('mother_name');
             $table->string('mother_phone_no')->nullable();
             $table->string('mother_occupation')->nullable();
-            $table->string('mother_photo')->nullable();
+            // $table->string('mother_photo')->nullable();
 
             $table->string('office_phone')->nullable();
             $table->string('email')->nullable();

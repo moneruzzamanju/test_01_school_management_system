@@ -25,7 +25,7 @@ class TeacherController extends Controller
      */
     public function create()
     {
-        //
+        return view('backend.modules.teacher.create');
     }
 
     /**
@@ -36,7 +36,26 @@ class TeacherController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request->all());
+        $data['first_name'] = $request->first_name;
+        $data['last_name'] = $request->last_name;
+        $data['specialty'] = $request->specialty;
+        $data['phone'] = $request->phone;
+        $data['email'] = $request->email;
+        $data['gender'] = $request->gender;
+        $data['address'] = $request->address;
+
+        if ($request->hasFile('image')){
+            $file = $request->file('image');
+            $path = 'public/images';
+            $file_name =rand(000,999).'.'. $file->getClientOriginalExtension();
+            $file->move($path,$file_name);
+            $data['photo'] = $path.'/'.$file_name;
+        }
+
+        // dd($data);
+        Teacher::create($data);
+        return redirect()->route('teacher.index');
     }
 
     /**
@@ -59,7 +78,9 @@ class TeacherController extends Controller
      */
     public function edit(Teacher $teacher)
     {
-        //
+        $data['teacher']=Teacher::find($teacher->id);
+        return view('backend.modules.teacher.edit',$data);
+
     }
 
     /**
@@ -71,7 +92,30 @@ class TeacherController extends Controller
      */
     public function update(Request $request, Teacher $teacher)
     {
-        //
+        $data['first_name'] = $request->first_name;
+        $data['last_name'] = $request->last_name;
+        $data['specialty'] = $request->specialty;
+        $data['phone'] = $request->phone;
+        $data['email'] = $request->email;
+        $data['gender'] = $request->gender;
+        $data['address'] = $request->address;
+
+        if ($request->hasFile('image')){
+            $file = $request->file('image');
+            $path = 'public/images';
+            $file_name =rand(000,999).'.'. $file->getClientOriginalExtension();
+            $file->move($path,$file_name);
+            $data['photo'] = $path.'/'.$file_name;
+
+            if(file_exists($teacher->photo)){
+                unlink($teacher->photo);
+            }
+
+        }
+
+        // dd($data);
+        $teacher->update($data);
+        return redirect()->route('teacher.index');
     }
 
     /**
@@ -82,6 +126,7 @@ class TeacherController extends Controller
      */
     public function destroy(Teacher $teacher)
     {
-        //
+        $teacher->delete();
+        return redirect()->route('teacher.index');
     }
 }

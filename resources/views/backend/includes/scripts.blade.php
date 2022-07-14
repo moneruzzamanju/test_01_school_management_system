@@ -34,4 +34,19 @@
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="{{ asset('backend/dist/js/pages/dashboard.js') }}"></script>
 
+
+<script>
+  function previewFile(input){
+      var file=$("input[type=file]").get(0).files[0];
+      if(file){
+          var reader = new FileReader();
+          reader.onload = function (){
+              $("#previewImage").attr("src",reader.result);
+          }
+          reader.readAsDataURL(file);
+      }
+  }
+</script>
+
+
 @stack('js')

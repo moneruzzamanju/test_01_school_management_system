@@ -20,7 +20,7 @@
         <h1>{{ $student->photo }}</h1>
         <h1>{{ $student->guardian_id }}</h1>
 
-        <a href="" class="btn btn-outline-success">Read More</a>
+        <a href="{{ route('student.index') }}" class="btn btn-outline-success">All Students</a>
     </div>
     
 </div>

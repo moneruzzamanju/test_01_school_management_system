@@ -4,7 +4,7 @@
 <div class="col-12">
     <div class="card">
       <div class="card-header">
-        <h3 class="card-title">Responsive Hover Table</h3>
+        <h3 class="card-title">All Guardian Page</h3>
 
         <div class="card-tools">
           <div class="input-group input-group-sm" style="width: 150px;">
@@ -31,10 +31,11 @@
               <th>Mothers Name</th>
               <th>Mothers Phone</th>
               <th>Mothers Occupation</th>
-              <th>Mothers Photo</th>
-              <th>Offide Phone</th>
+              {{-- <th>Mothers Photo</th> --}}
+              <th>Office Phone</th>
               <th>Email</th>
               <th>Status</th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>
@@ -44,29 +45,32 @@
               <td>{{ $guardian->father_name }}</td>
               <td>{{ $guardian->father_phone_no }}</td>
               <td>{{ $guardian->father_occupation }}</td>
-              <td>{{ $guardian->father_photo }}</td>
+              {{-- <td>{{ $guardian->father_photo }}</td> --}}
+              <td><img src="{{$guardian->father_photo }}" style="max-width: 75px;max-height: 75px;margin-top: 10px" alt="Photo"></td>
+
 
               <td>{{ $guardian->mother_name }}</td>
               <td>{{ $guardian->mother_phone_no }}</td>
               <td>{{ $guardian->mother_occupation }}</td>
-              <td>{{ $guardian->mother_photo }}</td>
+              {{-- <td>{{ $guardian->mother_photo }}</td> --}}
 
               <td>{{ $guardian->office_phone }}</td>
               <td>{{ $guardian->email }}</td>
               <td>{{ $guardian->status }}</td>
-              <td>
-                <a href="" 
+
+              <td class="d-flex justify">
+                <a href="{{ route('guardian.show',$guardian->id) }}" 
                 class="btn btn-info update_product_form">
                 <i class="las la-info"></i>
               </a>
-                <a href="" 
+                <a href="{{ route('guardian.edit',$guardian->id) }}" 
                 class="btn btn-success update_product_form">
                 <i class="las la-edit"></i>
               </a>
-                <a href="" 
-                class="btn btn-danger delete_product">
-                <i class="las la-times"></i>
-              </a>
+                
+                  {!! Form::open(['method'=>'delete', 'route'=>['guardian.destroy',$guardian->id]]) !!}
+                  {!! Form::button('<i class="las la-times"></i>', ['type'=>'submit', 'onclick'=>'return confirm("Are you sure !")','class'=>'btn btn-danger']) !!}
+                  {!! Form::close() !!}
             </td>
             </tr>
             @endforeach

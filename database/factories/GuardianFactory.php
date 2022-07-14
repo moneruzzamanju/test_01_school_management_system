@@ -25,9 +25,9 @@ class GuardianFactory extends Factory
             'mother_name' => $this->faker->text(10),
             'mother_phone_no' => $this->faker->phoneNumber,
             'mother_occupation' => $this->faker->text(10),
-            'mother_photo' => $this->faker->imageUrl(640,480),
+            // 'mother_photo' => $this->faker->imageUrl(640,480),
 
-            'office_phone' => $this->faker->text(10),
+            'office_phone' => $this->faker->phoneNumber,
             'email' => $this->faker->safeEmail(),
         ];
     }

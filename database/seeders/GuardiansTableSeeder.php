@@ -15,6 +15,6 @@ class GuardiansTableSeeder extends Seeder
      */
     public function run()
     {
-        Guardian::factory()->count(10)->create();
+        Guardian::factory()->count(5)->create();
     }
 }

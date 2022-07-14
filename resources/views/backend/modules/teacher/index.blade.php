@@ -4,7 +4,7 @@
 <div class="col-12">
     <div class="card">
       <div class="card-header">
-        <h3 class="card-title">Responsive Hover Table</h3>
+        <h3 class="card-title">All Teacher Page</h3>
 
         <div class="card-tools">
           <div class="input-group input-group-sm" style="width: 150px;">
@@ -33,6 +33,7 @@
               <th>Address</th>
               <th>Photo</th>
               <th>Status</th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>
@@ -46,20 +47,22 @@
               <td>{{ $teacher->email }}</td>
               <td>{{ $teacher->gender }}</td>
               <td>{{ $teacher->address }}</td>
-              <td>{{ $teacher->photo}}</td>
-              <td>
-                <a href="" 
+              <td><img src="{{$teacher->photo }}" style="max-width: 75px;max-height: 75px;margin-top: 10px" alt="Photo"></td>
+              <td>{{ $teacher->status }}</td>
+
+              <td class="d-flex justify">
+                <a href="{{ route('teacher.show',$teacher->id) }}" 
                 class="btn btn-info update_product_form">
                 <i class="las la-info"></i>
               </a>
-                <a href="" 
+                <a href="{{ route('teacher.edit',$teacher->id) }}" 
                 class="btn btn-success update_product_form">
                 <i class="las la-edit"></i>
               </a>
-                <a href="" 
-                class="btn btn-danger delete_product">
-                <i class="las la-times"></i>
-              </a>
+                
+                  {!! Form::open(['method'=>'delete', 'route'=>['teacher.destroy',$teacher->id]]) !!}
+                  {!! Form::button('<i class="las la-times"></i>', ['type'=>'submit', 'onclick'=>'return confirm("Are you sure !")','class'=>'btn btn-danger']) !!}
+                  {!! Form::close() !!}
             </td>
             </tr>
             @endforeach

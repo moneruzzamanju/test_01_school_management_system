@@ -9,7 +9,7 @@
         <h1>{{ $subject->name }}</h1>
         <h1>{{ $subject->description }}</h1>
 
-        <a href="" class="btn btn-outline-success">Read More</a>
+        <a href="{{ route('subject.index') }}" class="btn btn-outline-success">All Subjects</a>
     </div>
     
 </div>

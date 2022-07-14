@@ -4,30 +4,31 @@
 <div class="col-md-12">
     <div class="card card-primary">
       <div class="card-header">
-        <h3 class="card-title">Add Teacher</h3>
+        <h3 class="card-title">Update Teacher</h3>
       </div>
-      <form action="{{ route('teacher.store') }}" method="POST" enctype="multipart/form-data">
+      <form action="{{ route('teacher.update',$teacher->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
+        @method('PUT')
         <div class="card-body">
           <div class="form-group">
             <label for="first_name">First Name</label>
-            <input type="text" class="form-control" id="first_name" name="first_name" placeholder="Enter Name">
+            <input type="text" class="form-control" id="first_name" value="{{ $teacher->first_name }}" name="first_name" placeholder="Enter Name">
           </div>
           <div class="form-group">
             <label for="last_name">Last Name</label>
-            <input type="text" class="form-control" id="last_name" name="last_name" placeholder="Enter Name">
+            <input type="text" class="form-control" id="last_name" value="{{ $teacher->last_name }}" name="last_name" placeholder="Enter Name">
           </div>
           <div class="form-group">
             <label for="specialty">Specialty</label>
-            <input type="text" class="form-control" id="specialty" name="specialty" placeholder="Specialty">
+            <input type="text" class="form-control" id="specialty" value="{{ $teacher->specialty }}" name="specialty" placeholder="Specialty">
           </div>
           <div class="form-group">
             <label for="phone">phone</label>
-            <input type="text" class="form-control" id="phone" name="phone" placeholder="phone">
+            <input type="text" class="form-control" id="phone" value="{{ $teacher->phone }}" name="phone" placeholder="phone">
           </div>
           <div class="form-group">
             <label for="email">Email</label>
-            <input type="email" class="form-control" id="email" name="email" placeholder="Email">
+            <input type="email" class="form-control" id="email" value="{{ $teacher->email }}" name="email" placeholder="Email">
           </div>
 
           
@@ -49,15 +50,13 @@
 
           <div class="form-group">
             <label for="address">Address</label>
-            <input type="text" class="form-control" id="address" name="address" placeholder="Enter Address">
+            <input type="text" class="form-control" id="address" value="{{ $teacher->address }}" name="address" placeholder="Enter Address">
           </div>
 
           <div class="form-group">
-
             <input type="file" class="form-control-file" name="image" id="exampleInputFile" onchange="previewFile(this)" aria-describedby="fileHelp">
-            <img src="" id="previewImage" alt="Creator Image" style="max-width: 200px;max-height: 200px;margin-top: 10px">
+            <img src="{{ asset($teacher->photo) }}" id="previewImage" alt="Teacher Photo" style="max-width: 200px;max-height: 200px;margin-top: 10px">
         </div>
-
 
 
         </div>
